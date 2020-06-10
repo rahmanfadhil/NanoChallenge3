@@ -79,79 +79,83 @@ class GameScene: SKScene {
         // Initialize polygon path for PhysicsBody
         let path = CGMutablePath()
         
+        // The width and hight of the image
+        let width = Int(node.size.width.rounded())
+        let height = Int(node.size.height.rounded())
+        
         // Set the polygon path based on the block type
         switch (name) {
         case "square", "straight-1", "straight-2":
             path.addLines(between: [
                 CGPoint(x: 0, y: 0),
-                CGPoint(x: node.size.width, y: 0),
-                CGPoint(x: node.size.width, y: node.size.height),
-                CGPoint(x: 0, y: node.size.height),
+                CGPoint(x: width, y: 0),
+                CGPoint(x: width, y: height),
+                CGPoint(x: 0, y: height),
                 CGPoint(x: 0, y: 0),
             ])
         case "angle-1":
             path.addLines(between: [
-                CGPoint(x: node.size.width / 2, y: node.size.height),
-                CGPoint(x: node.size.width, y: node.size.height),
-                CGPoint(x: node.size.width, y: 0),
+                CGPoint(x: width / 2, y: height),
+                CGPoint(x: width, y: height),
+                CGPoint(x: width, y: 0),
                 CGPoint(x: 0, y: 0),
-                CGPoint(x: 0, y: node.size.height / 2),
-                CGPoint(x: node.size.width / 2, y: node.size.height / 2),
-                CGPoint(x: node.size.width / 2, y: node.size.height)
+                CGPoint(x: 0, y: width / 2),
+                CGPoint(x: width / 2, y: height / 2),
+                CGPoint(x: width / 2, y: height)
             ])
         case "angle-2":
             path.addLines(between: [
-                CGPoint(x: 0, y: node.size.height),
-                CGPoint(x: node.size.width / 2, y: node.size.height),
-                CGPoint(x: node.size.width / 2, y: node.size.height / 2),
-                CGPoint(x: node.size.width, y: node.size.height / 2),
-                CGPoint(x: node.size.width, y: 0),
+                CGPoint(x: 0, y: height),
+                CGPoint(x: width / 2, y: height),
+                CGPoint(x: width / 2, y: height / 2),
+                CGPoint(x: width, y: height / 2),
+                CGPoint(x: width, y: 0),
                 CGPoint(x: 0, y: 0),
-                CGPoint(x: 0, y: node.size.height)
+                CGPoint(x: 0, y: height)
             ])
         case "letterl-1":
             path.addLines(between: [
-                CGPoint(x: 0, y: node.size.height),
-                CGPoint(x: node.size.width / 2, y: node.size.height),
-                CGPoint(x: node.size.width / 2, y: node.size.height / 3),
-                CGPoint(x: node.size.width, y: node.size.height / 3),
-                CGPoint(x: node.size.width, y: 0),
+                CGPoint(x: 0, y: height),
+                CGPoint(x: width / 2, y: height),
+                CGPoint(x: width / 2, y: height / 3),
+                CGPoint(x: width, y: height / 3),
+                CGPoint(x: width, y: 0),
                 CGPoint(x: 0, y: 0),
-                CGPoint(x: 0, y: node.size.height)
+                CGPoint(x: 0, y: height)
             ])
         case "letterl-2":
             path.addLines(between: [
-                CGPoint(x: 0, y: node.size.height),
-                CGPoint(x: node.size.width / 3, y: node.size.height),
-                CGPoint(x: node.size.width / 3, y: node.size.height / 2),
-                CGPoint(x: node.size.width, y: node.size.height / 2),
-                CGPoint(x: node.size.width, y: 0),
+                CGPoint(x: 0, y: height),
+                CGPoint(x: width / 3, y: height),
+                CGPoint(x: width / 3, y: height / 2),
+                CGPoint(x: width, y: height / 2),
+                CGPoint(x: width, y: 0),
                 CGPoint(x: 0, y: 0),
-                CGPoint(x: 0, y: node.size.height)
+                CGPoint(x: 0, y: height)
             ])
         case "lettert-1":
             path.addLines(between: [
-                CGPoint(x: 0, y: node.size.height),
-                CGPoint(x: node.size.width, y: node.size.height),
-                CGPoint(x: node.size.width, y: node.size.height / 2),
-                CGPoint(x: (node.size.width / 3) * 2, y: node.size.height / 2),
-                CGPoint(x: (node.size.width / 3) * 2, y: 0),
-                CGPoint(x: (node.size.width / 3), y: 0),
-                CGPoint(x: (node.size.width / 3), y: node.size.height / 2),
-                CGPoint(x: 0, y: node.size.height / 2),
-                CGPoint(x: 0, y: node.size.height)
+                CGPoint(x: 0, y: height),
+                CGPoint(x: width, y: height),
+                CGPoint(x: width, y: height / 2),
+                CGPoint(x: (width / 3) * 2, y: height / 2),
+                CGPoint(x: (width / 3) * 2, y: 0),
+                CGPoint(x: (width / 3), y: 0),
+                CGPoint(x: (width / 3), y: height / 2),
+                CGPoint(x: 0, y: height / 2),
+                CGPoint(x: 0, y: height)
             ])
         case "lettert-2":
             path.addLines(between: [
-                CGPoint(x: node.size.width / 3, y: node.size.height),
-                CGPoint(x: (node.size.width / 3) * 2, y: node.size.height),
-                CGPoint(x: (node.size.width / 3) * 2, y: node.size.height / 2),
-                CGPoint(x: node.size.width, y: node.size.height / 2),
-                CGPoint(x: node.size.width, y: 0),
+                CGPoint(x: width / 3, y: height),
+                CGPoint(x: (width / 3) * 2, y: height),
+                CGPoint(x: (width / 3) * 2, y: height / 2),
+                CGPoint(x: width, y: height / 2),
+                CGPoint(x: width, y: 0),
                 CGPoint(x: 0, y: 0),
-                CGPoint(x: 0, y: node.size.height / 2),
-                CGPoint(x: node.size.width / 3, y: node.size.height / 2),
-                CGPoint(x: node.size.width / 3, y: node.size.height)
+                CGPoint(x: 0, y: width / 2),
+                CGPoint(x: width / 3, y: height / 2),
+                CGPoint(x: width / 3, y: height)
             ])
         default:
             print("type invalid!")
@@ -180,6 +184,7 @@ class GameScene: SKScene {
                     // Copy selected block
                     guard let copiedNode = node.copy() as? SKSpriteNode else { return }
                     copiedNode.position = location
+                    copiedNode.zPosition = 1
                     addChild(copiedNode)
                     
                     // Set currently dragged node
