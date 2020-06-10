@@ -11,79 +11,85 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+    private var blockOne = SKSpriteNode(color: .blue, size: CGSize(width: 50.0, height: 150.0))
+    private var blockTwo = SKSpriteNode(color: .blue, size: CGSize(width: 150.0, height: 50.0))
+    private var blockThree = SKSpriteNode(color: .blue, size: CGSize(width: 50.0, height: 150.0))
+    private var scoreLabel = SKLabelNode(text: "Score: 0")
+    private var currentNode: SKNode?
+    
+    private var blocks = [SKNode]()
     
     override func didMove(to view: SKView) {
+        backgroundColor = SKColor.white
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
+        scoreLabel.fontColor = UIColor.black
+        scoreLabel.fontSize = 48
+        scoreLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 200)
+        addChild(scoreLabel)
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
+        blockOne.position = CGPoint(x: frame.midX - 200, y: frame.minY + 150)
+        blockOne.name = "tall"
+        addChild(blockOne)
+
+        blockTwo.position = CGPoint(x: frame.midX, y: frame.minY + 150)
+        blockTwo.name = "wide"
+        addChild(blockTwo)
+
+        blockThree.position = CGPoint(x: frame.midX + 200, y: frame.minY + 150)
+        blockThree.name = "tall"
+        addChild(blockThree)
         
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
-            
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
-        }
-    }
-    
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame.inset(by: UIEdgeInsets.init(top: 300, left: 0, bottom: 0, right: 0)))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            let touchedNodes = nodes(at: location)
+
+            for node in touchedNodes.reversed() {
+                if node.name == "tall" || node.name == "wide" {
+                    let copiedNode = node.copy() as! SKSpriteNode
+                    copiedNode.position = location
+
+                    copiedNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: node.frame.size.width, height: node.frame.size.height))
+
+                    copiedNode.physicsBody?.allowsRotation = false
+                    copiedNode.physicsBody?.friction = 10
+                    copiedNode.physicsBody?.restitution = 0
+                    copiedNode.name = "blah"
+                    addChild(copiedNode)
+                    currentNode = copiedNode
+                }
+            }
+        }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        // Get all block distances
+        let blockDistances = blocks.map { (node) in
+            return node.position.y
         }
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        // Get the farthest distance and update the score
+        if let farthest = blockDistances.max() {
+            scoreLabel.text = "Score: \(Int(farthest.rounded()))"
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
+        if let touch = touches.first, let node = currentNode {
+            let touchLocation = touch.location(in: self)
+            node.position = touchLocation
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        if let node = currentNode {
+            node.physicsBody?.allowsRotation = true
+            blocks.append(node)
+        }
+        
+        currentNode = nil
     }
 }
