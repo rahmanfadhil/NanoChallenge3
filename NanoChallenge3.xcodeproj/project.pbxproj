@@ -17,6 +17,7 @@
 		160670A32490C92A002B06D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 160670A12490C92A002B06D7 /* LaunchScreen.storyboard */; };
 		B78697EE2492791700AAB110 /* golden-dragon-solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B78697ED2492791700AAB110 /* golden-dragon-solid.ttf */; };
 		B78697F02492792400AAB110 /* norwester.otf in Resources */ = {isa = PBXBuildFile; fileRef = B78697EF2492792400AAB110 /* norwester.otf */; };
+		B78697F3249282F600AAB110 /* game-bg-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B78697F2249282F600AAB110 /* game-bg-music.mp3 */; };
 		B7DF72952492734E0064F6B1 /* StartGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DF72942492734E0064F6B1 /* StartGameVC.swift */; };
 		B7DF7297249273A70064F6B1 /* PlayersNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DF7296249273A70064F6B1 /* PlayersNameVC.swift */; };
 /* End PBXBuildFile section */
@@ -34,6 +35,7 @@
 		160670A42490C92A002B06D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B78697ED2492791700AAB110 /* golden-dragon-solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "golden-dragon-solid.ttf"; sourceTree = "<group>"; };
 		B78697EF2492792400AAB110 /* norwester.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = norwester.otf; sourceTree = "<group>"; };
+		B78697F2249282F600AAB110 /* game-bg-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-bg-music.mp3"; sourceTree = "<group>"; };
 		B7DF72942492734E0064F6B1 /* StartGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameVC.swift; sourceTree = "<group>"; };
 		B7DF7296249273A70064F6B1 /* PlayersNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersNameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +54,7 @@
 		160670862490C928002B06D7 = {
 			isa = PBXGroup;
 			children = (
+				B78697F2249282F600AAB110 /* game-bg-music.mp3 */,
 				160670912490C928002B06D7 /* NanoChallenge3 */,
 				160670902490C928002B06D7 /* Products */,
 			);
@@ -156,6 +159,7 @@
 				160670A02490C92A002B06D7 /* Assets.xcassets in Resources */,
 				160670A32490C92A002B06D7 /* LaunchScreen.storyboard in Resources */,
 				B78697EE2492791700AAB110 /* golden-dragon-solid.ttf in Resources */,
+				B78697F3249282F600AAB110 /* game-bg-music.mp3 in Resources */,
 				B78697F02492792400AAB110 /* norwester.otf in Resources */,
 				160670972490C928002B06D7 /* Actions.sks in Resources */,
 			);

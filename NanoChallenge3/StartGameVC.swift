@@ -7,24 +7,29 @@
 //
 
 import UIKit
+import AVFoundation
 
 class StartGameVC: UIViewController {
-
+    
+    var audioPlayer: AVAudioPlayer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        playAudioFromProject()
+        
     }
     
+    func playAudioFromProject() {
+        guard let url = Bundle.main.url(forResource: "game-bg-music", withExtension: "mp3") else {
+            print("error to get the mp3 file")
+            return
+        }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        audioPlayer?.play()
     }
-    */
-
 }
