@@ -43,5 +43,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>norwester.otf</string>
+		<string>golden-dragon-solid.ttf</string>
+	</array>
 </dict>
 </plist>

@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "game-background.jpg",
+      "filename" : "game-bg.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
