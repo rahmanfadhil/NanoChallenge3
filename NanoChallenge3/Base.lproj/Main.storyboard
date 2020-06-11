@@ -126,6 +126,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" textContentType="name"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TVl-4p-v2y" id="8bO-4c-mXc"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdL-fz-Kgj">
                                 <rect key="frame" x="154.5" y="266" width="105" height="36"/>
@@ -146,6 +149,9 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" textContentType="name"/>
+                                <connections>
+                                    <outlet property="delegate" destination="TVl-4p-v2y" id="l8l-vS-zzi"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKl-2Y-UJL">
                                 <rect key="frame" x="152" y="438" width="110" height="36"/>

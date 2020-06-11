@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayersNameVC: UIViewController {
+class PlayersNameVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var inputPlayerLabel: UILabel!
     @IBOutlet weak var firstPlayerName: UITextField!
@@ -20,6 +20,11 @@ class PlayersNameVC: UIViewController {
         
     }
     
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        firstPlayerName.resignFirstResponder()
+        secondPlayerName.resignFirstResponder()
+        
+        return true
+    }
 
 }
