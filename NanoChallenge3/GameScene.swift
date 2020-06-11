@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 // TODO: play background music.
 // TODO: play a sound when a block collide with other block.
@@ -16,6 +17,8 @@ import GameplayKit
 // TODO: rotate the screen 180 degree each time the player dropped a block.
 
 class GameScene: SKScene {
+    
+    var audioPlayer: AVAudioPlayer!
     
     // Score text
     private var scoreLabel = SKLabelNode(text: "Score: 0")
@@ -236,6 +239,10 @@ class GameScene: SKScene {
             // Add node to blockOptions property, so that we can remove it later.
             blockOptions.append(node)
         }
+    }
+    
+    func audioSelectBrick(){
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
