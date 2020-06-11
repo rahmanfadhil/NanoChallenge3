@@ -179,6 +179,7 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
+            audioSelectBrick()
             let location = touch.location(in: self)
             let touchedNodes = nodes(at: location)
 
@@ -241,8 +242,35 @@ class GameScene: SKScene {
         }
     }
     
+    //Play the sound effects
+    //When touch select a brick
     func audioSelectBrick(){
-        
+        guard let url = Bundle.main.url(forResource: "selectBrick", withExtension: "m4a") else {
+            print("error to get the m4a file")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        audioPlayer?.play()
+    }
+    
+    //When putting the brick
+    func audioPutBrick(){
+        guard let url = Bundle.main.url(forResource: "putBrick", withExtension: "m4a") else {
+            print("error to get the m4a file")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        audioPlayer?.play()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -281,6 +309,7 @@ class GameScene: SKScene {
             // When a block is dropped, re-display random block options to the screen
             displayBlockOptions()
         }
+        audioPutBrick()
         
         // Remove the currently dragged node
         currentNode = nil
