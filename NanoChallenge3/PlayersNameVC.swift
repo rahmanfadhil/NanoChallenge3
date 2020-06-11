@@ -10,9 +10,13 @@ import UIKit
 
 class PlayersNameVC: UIViewController {
 
+    @IBOutlet weak var inputPlayerLabel: UILabel!
+    @IBOutlet weak var firstPlayerName: UITextField!
+    @IBOutlet weak var secondPlayerName: UITextField!
+    @IBOutlet weak var playGameButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        inputPlayerLabel.textColor = UIColor.white
         // Do any additional setup after loading the view.
     }
     

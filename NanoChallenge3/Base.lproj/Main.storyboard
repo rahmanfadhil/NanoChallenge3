@@ -100,7 +100,7 @@
                                     <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="5Ru-1M-CTo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJH-D5-IXG">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJH-D5-IXG">
                                 <rect key="frame" x="97" y="103" width="220" height="88"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="220" id="E9B-D9-QsN"/>
@@ -115,16 +115,16 @@
                                         </attributes>
                                     </fragment>
                                 </attributedString>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="22" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-Cw-p5c">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Type here..." textAlignment="center" minimumFontSize="22" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="7gL-Cw-p5c">
                                 <rect key="frame" x="69.5" y="310" width="275" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="aIA-6o-eHi"/>
                                     <constraint firstAttribute="width" constant="275" id="x2Z-4M-jFx"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdL-fz-Kgj">
@@ -137,14 +137,14 @@
                                 <color key="textColor" red="0.93725490196078431" green="0.82745098039215681" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="22" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="6XY-hH-t17">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Type here..." textAlignment="center" minimumFontSize="22" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="6XY-hH-t17">
                                 <rect key="frame" x="69.5" y="482" width="275" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="275" id="1nK-mR-feQ"/>
                                     <constraint firstAttribute="height" constant="64" id="MEU-QM-nCY"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="28"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKl-2Y-UJL">
@@ -188,6 +188,12 @@
                         <viewLayoutGuide key="safeArea" id="UFa-gF-xjA"/>
                     </view>
                     <navigationItem key="navigationItem" id="BOt-Cm-Cg4"/>
+                    <connections>
+                        <outlet property="firstPlayerName" destination="7gL-Cw-p5c" id="ftt-HH-DoJ"/>
+                        <outlet property="inputPlayerLabel" destination="NJH-D5-IXG" id="hp7-iK-9fb"/>
+                        <outlet property="playGameButton" destination="Bnd-Pf-53J" id="Cgj-ht-0cH"/>
+                        <outlet property="secondPlayerName" destination="6XY-hH-t17" id="oww-OL-Ev0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnp-Qm-G8c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
