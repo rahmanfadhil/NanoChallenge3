@@ -18,6 +18,8 @@ import AVFoundation
 
 class GameScene: SKScene, GameDelegate {
     
+    var gameViewDelegate: GameViewController?
+    
     var audioPlayer: AVAudioPlayer!
     
     var countdownEnd: Date?
@@ -309,7 +311,7 @@ class GameScene: SKScene, GameDelegate {
         // Get the nearest distance and update the score
         if let nearest = minBlockDistances.min() {
             if nearest < 250 {
-                print("lost!")
+                gameViewDelegate?.loose()
             }
         }
     }
