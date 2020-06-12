@@ -291,14 +291,26 @@ class GameScene: SKScene, GameDelegate {
             changePlayer()
         }
         
-        // Get all block distances
-        let blockDistances = blocks.map { (node) in
+        // Get all block distances farthest
+        let maxBlockDistances = blocks.map { (node) in
             return node.frame.maxY
         }
         
+        // Get all block distances for nearest
+        let minBlockDistances = blocks.map { (node) in
+            return node.frame.minY
+        }
+        
         // Get the farthest distance and update the score
-        if let farthest = blockDistances.max() {
+        if let farthest = maxBlockDistances.max() {
             score = Int(farthest.rounded())
+        }
+        
+        // Get the nearest distance and update the score
+        if let nearest = minBlockDistances.min() {
+            if nearest < 250 {
+                print("lost!")
+            }
         }
     }
     
