@@ -66,6 +66,7 @@ class GameScene: SKScene, GameDelegate {
         countdownLabel = childNode(withName: "countdownLabel") as? SKLabelNode
         countdownLabel.text = "0"
         
+        // Change player text
         changePlayerLabel = childNode(withName: "changePlayerLabel") as? SKLabelNode
         changePlayerLabel.text = ""
         
@@ -307,7 +308,6 @@ class GameScene: SKScene, GameDelegate {
         
         // Set countdown text
         countdownLabel.text = String(format: "%.1f", timeLeft)
-        
         if timeLeft < 0 {
             changePlayerLabel.text = "Change Player"
             changePlayer()
@@ -374,14 +374,10 @@ class GameScene: SKScene, GameDelegate {
     
     func changePlayer() {
         displayBlockOptions()
-        setCountdown()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.gameViewDelegate?.rotateScreen()
                }
+        setCountdown()
         }
-       
     
-    func playerGetReady(){
-        
-    }
 }
