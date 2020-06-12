@@ -61,7 +61,7 @@ class GameScene: SKScene, GameDelegate {
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 200)
         
         // Add physics body to the scene, prevent blocks from escaping the scene
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame.inset(by: UIEdgeInsets.init(top: 300, left: 0, bottom: 0, right: 0)))
+        physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: -(828 / 2), y: 222, width: 828 * 2, height: 5040))
     }
     
     // Add a single block to the scene
