@@ -20,8 +20,12 @@ class GameScene: SKScene, GameDelegate {
     
     var audioPlayer: AVAudioPlayer!
     
-    // Score text
-    private var scoreLabel = SKLabelNode(text: "Score: 0")
+    var countdownEnd: Date?
+    
+    var score = 0
+    
+    // Countdown text
+    private var countdownLabel: SKLabelNode!
     
     // The block that is currently being dragged in the screen
     private var currentNode: SKSpriteNode?
@@ -54,14 +58,19 @@ class GameScene: SKScene, GameDelegate {
         // Display all available blocks for the user to drop
         displayBlockOptions()
         
-        // Score text
-        // TODO: change text font to a nicer and playful font.
-        scoreLabel.fontColor = UIColor.black
-        scoreLabel.fontSize = 48
-        scoreLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 200)
+        // Countdown text
+        countdownLabel = childNode(withName: "countdownLabel") as? SKLabelNode
+        countdownLabel.text = "0"
+        
+        setCountdown()
         
         // Add physics body to the scene, prevent blocks from escaping the scene
         physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: -(828 / 2), y: 222, width: 828 * 2, height: 5040))
+    }
+    
+    func setCountdown() {
+        let now = Date()
+        countdownEnd = now.addingTimeInterval(10.0)
     }
     
     // Add a single block to the scene
@@ -273,6 +282,15 @@ class GameScene: SKScene, GameDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        let timeLeft = countdownEnd!.timeIntervalSinceNow
+        
+        // Set countdown text
+        countdownLabel.text = String(format: "%.1f", timeLeft)
+        
+        if timeLeft < 0 {
+            changePlayer()
+        }
+        
         // Get all block distances
         let blockDistances = blocks.map { (node) in
             return node.frame.maxY
@@ -280,7 +298,7 @@ class GameScene: SKScene, GameDelegate {
         
         // Get the farthest distance and update the score
         if let farthest = blockDistances.max() {
-            scoreLabel.text = "Score: \(Int(farthest.rounded()))"
+            score = Int(farthest.rounded())
         }
     }
     
@@ -306,7 +324,7 @@ class GameScene: SKScene, GameDelegate {
             addBlock(name: node.name!, position: location)
 
             // When a block is dropped, re-display random block options to the screen
-            displayBlockOptions()
+            changePlayer()
         }
         audioPutBrick()
         
@@ -317,5 +335,10 @@ class GameScene: SKScene, GameDelegate {
     func setPlayerNames(player1: String, player2: String) {
         print(player1)
         print(player2)
+    }
+    
+    func changePlayer() {
+        displayBlockOptions()
+        setCountdown()
     }
 }
