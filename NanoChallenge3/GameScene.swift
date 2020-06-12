@@ -332,10 +332,10 @@ class GameScene: SKScene, GameDelegate {
         currentNode = nil
     }
     
-    func setPlayerNames(player1: String, player2: String) {
-        print(player1)
-        print(player2)
-    }
+//    func setPlayerNames(player1: String, player2: String) {
+//        self.player1 = player1
+//        self.player2 = player2
+//    }
     
     func changePlayer() {
         displayBlockOptions()
