@@ -25,10 +25,12 @@ class PlayersNameVC: UIViewController, UITextFieldDelegate {
         var firstPlayer: String = firstPlayerName.text!
         var secondPlayer: String = secondPlayerName.text!
         
+        let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+        
         if textField == firstPlayerName {
-            firstPlayer = string
+            firstPlayer = updatedString!
         } else if textField == secondPlayerName {
-            secondPlayer = string
+            secondPlayer = updatedString!
         }
         
         if firstPlayer.isEmpty || secondPlayer.isEmpty {
