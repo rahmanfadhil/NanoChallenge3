@@ -19,7 +19,17 @@ import AVFoundation
 // TODO: move camera.
 // TODO: button clicked sound
 
+struct PhysicsCategory {
+    static let scene: UInt32 = 0b1
+    static let block: UInt32 = 0b10
+}
+
 class GameScene: SKScene, GameDelegate {
+    
+    var playerLabel: SKLabelNode?
+    var playerOne: String!
+    var playerTwo: String!
+    var currentPlayer = 1
     
     var gameViewDelegate: GameViewController?
     
@@ -65,6 +75,13 @@ class GameScene: SKScene, GameDelegate {
         // Display all available blocks for the user to drop
         displayBlockOptions()
         
+        playerLabel = SKLabelNode(fontNamed: "Norwester-Regular")
+        playerLabel?.text = "\(playerOne!)'S TURN"
+        playerLabel?.fontSize = 42
+        playerLabel?.fontColor = .black
+        playerLabel?.position = CGPoint(x: frame.maxX - 175, y: 1630)
+        addChild(playerLabel!)
+        
         // Countdown text
         countdownLabel = childNode(withName: "countdownLabel") as? SKLabelNode
         countdownLabel.text = "0"
@@ -76,7 +93,18 @@ class GameScene: SKScene, GameDelegate {
         setCountdown()
         
         // Add physics body to the scene, prevent blocks from escaping the scene
-        physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: -(828 / 2), y: 240, width: 828 * 2, height: 5040))
+        physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: -(828 / 2), y: 351, width: 828 * 2, height: 5040))
+        physicsBody?.categoryBitMask = PhysicsCategory.scene
+        physicsBody?.contactTestBitMask = PhysicsCategory.block
+        
+        physicsWorld.contactDelegate = self
+    }
+    
+    func setPlayerName() {
+        currentPlayer = currentPlayer == 1 ? 2 : 1
+        let playerName = currentPlayer == 1 ? playerOne : playerTwo
+        print(currentPlayer)
+        playerLabel?.text = "\(playerName!)'S TURN"
     }
     
     func setCountdown() {
@@ -94,7 +122,7 @@ class GameScene: SKScene, GameDelegate {
         node.position = position
         
         // Minimize block size
-        node.setScale(0.25)
+        node.setScale(0.3)
         
         // Set the anchor point of the block
         node.anchorPoint = CGPoint(x: 0, y: 0)
@@ -190,6 +218,11 @@ class GameScene: SKScene, GameDelegate {
         // Add PhysicsBody to block sprite node
         node.physicsBody = SKPhysicsBody(polygonFrom: path)
         
+        node.physicsBody?.categoryBitMask = PhysicsCategory.block
+        node.physicsBody?.contactTestBitMask = PhysicsCategory.scene
+        
+        node.name = "block"
+        
         // Add display to screen
         addChild(node)
         
@@ -199,7 +232,6 @@ class GameScene: SKScene, GameDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            audioSelectBrick()
             let location = touch.location(in: self)
             let touchedNodes = nodes(at: location)
 
@@ -213,6 +245,8 @@ class GameScene: SKScene, GameDelegate {
                     
                     // Set currently dragged node
                     currentNode = copiedNode
+                    
+                    audioSelectBrick()
                 }
             }
         }
@@ -237,9 +271,9 @@ class GameScene: SKScene, GameDelegate {
         
         // The positions of each block options. This value will never changed.
         let blockLocations = [
-            CGPoint(x: frame.midX - 200, y: frame.minY + 120),
-            CGPoint(x: frame.midX, y: frame.minY + 120),
-            CGPoint(x: frame.midX + 200, y: frame.minY + 120)
+            CGPoint(x: frame.midX - 250, y: frame.minY + 178),
+            CGPoint(x: frame.midX, y: frame.minY + 178),
+            CGPoint(x: frame.midX + 250, y: frame.minY + 178)
         ]
         
         // Display each block options
@@ -254,7 +288,7 @@ class GameScene: SKScene, GameDelegate {
             let node = SKSpriteNode(imageNamed: block)
             node.position = location
             node.name = block
-            node.setScale(0.25)
+            node.setScale(0.3)
             node.color = UIColor.red
             node.colorBlendFactor = 0.5
             // Add node to the scene
@@ -319,7 +353,6 @@ class GameScene: SKScene, GameDelegate {
         // Set countdown text
         countdownLabel.text = String(format: "%.1f", timeLeft)
         if timeLeft < 0 {
-            changePlayerLabel.text = "Change Player"
             changePlayer()
         }
         
@@ -328,20 +361,11 @@ class GameScene: SKScene, GameDelegate {
             return node.frame.maxY
         }
         
-        // Get all block distances for nearest
-        let minBlockDistances = blocks.map { (node) in
-            return node.frame.minY
-        }
-        
         // Get the farthest distance and update the score
         if let farthest = maxBlockDistances.max() {
-            score = Int(farthest.rounded())
-        }
-        
-        // Get the nearest distance and update the score
-        if let nearest = minBlockDistances.min() {
-            if nearest < 300 {
-                gameViewDelegate?.loose()
+            let newScore = Int(farthest.rounded())
+            if newScore > score {
+                score = newScore
             }
         }
     }
@@ -366,25 +390,40 @@ class GameScene: SKScene, GameDelegate {
             
             // Create a new block
             addBlock(name: node.name!, position: location)
-
         
+            audioPutBrick()
         }
-        audioPutBrick()
         
         // Remove the currently dragged node
         currentNode = nil
     }
     
     func setPlayerNames(player1: String, player2: String) {
-        print(player1)
-        print(player2)
+        playerOne = player1
+        playerTwo = player2
     }
     
     func changePlayer() {
         displayBlockOptions()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.gameViewDelegate?.rotateScreen()
+        setPlayerName()
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        self.gameViewDelegate?.rotateScreen()
+//        }
+        self.setCountdown()
+    }
+    
+    func finishGame() {
+        print("finish game!")
+    }
+}
+
+extension GameScene: SKPhysicsContactDelegate {
+    func didBegin(_ contact: SKPhysicsContact) {
+        let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        if contactMask == PhysicsCategory.block | PhysicsCategory.scene {
+            let ground = contact.bodyA.node?.name == "scene" ? contact.bodyA.node : contact.bodyB.node
+            ground?.physicsBody?.categoryBitMask = 0b100
+            finishGame()
         }
-        setCountdown()
     }
 }
