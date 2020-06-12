@@ -39,6 +39,7 @@ class PlayersNameVC: UIViewController, UITextFieldDelegate {
         
         return true
     }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         firstPlayerName.resignFirstResponder()
