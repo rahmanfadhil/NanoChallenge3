@@ -29,6 +29,8 @@ class GameScene: SKScene, GameDelegate {
     // Countdown text
     private var countdownLabel: SKLabelNode!
     
+    private var changePlayerLabel: SKLabelNode!
+    
     // The block that is currently being dragged in the screen
     private var currentNode: SKSpriteNode?
     
@@ -63,6 +65,9 @@ class GameScene: SKScene, GameDelegate {
         // Countdown text
         countdownLabel = childNode(withName: "countdownLabel") as? SKLabelNode
         countdownLabel.text = "0"
+        
+        changePlayerLabel = childNode(withName: "changePlayerLabel") as? SKLabelNode
+        changePlayerLabel.text = ""
         
         setCountdown()
         
@@ -304,6 +309,7 @@ class GameScene: SKScene, GameDelegate {
         countdownLabel.text = String(format: "%.1f", timeLeft)
         
         if timeLeft < 0 {
+            changePlayerLabel.text = "Change Player"
             changePlayer()
         }
         
@@ -369,8 +375,11 @@ class GameScene: SKScene, GameDelegate {
     func changePlayer() {
         displayBlockOptions()
         setCountdown()
-//        gameViewDelegate?.rotateScreen()
-    }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.gameViewDelegate?.rotateScreen()
+               }
+        }
+       
     
     func playerGetReady(){
         

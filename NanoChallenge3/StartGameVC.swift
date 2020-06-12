@@ -32,5 +32,6 @@ class StartGameVC: UIViewController {
         }
         audioPlayer?.play()
         audioPlayer.setVolume(0.3, fadeDuration: 0)
+        audioPlayer.numberOfLoops = -1
     }
 }
