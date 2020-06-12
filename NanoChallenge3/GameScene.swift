@@ -10,11 +10,12 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-// TODO: play background music.
 // TODO: play a sound when a block collide with other block.
-// TODO: play a sound when a block is selected.
 // TODO: when a block touched the ground, end the game.
 // TODO: rotate the screen 180 degree each time the player dropped a block.
+// TODO: delay screen when change player.
+// TODO: finish screen with tower image.
+// TODO: display player names.
 
 class GameScene: SKScene, GameDelegate {
     
@@ -375,7 +376,7 @@ class GameScene: SKScene, GameDelegate {
         displayBlockOptions()
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.gameViewDelegate?.rotateScreen()
-               }
-        setCountdown()
         }
+        setCountdown()
+    }
 }
