@@ -43,13 +43,25 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Theo &amp; Fadhil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BW7-zC-sG1">
+                                <rect key="frame" x="149" y="808" width="116" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="MIP-4B-ZJz"/>
+                                    <constraint firstAttribute="height" constant="21" id="TZK-mI-6FF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
+                                <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7bU-rc-t3C" firstAttribute="top" secondItem="ZY9-7Y-AE2" secondAttribute="bottom" constant="8" id="6E9-cs-0tr"/>
                             <constraint firstItem="7bU-rc-t3C" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7H4-Qu-7ok"/>
+                            <constraint firstItem="BW7-zC-sG1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="B7n-KC-4lq"/>
                             <constraint firstItem="gjq-2m-IRm" firstAttribute="top" secondItem="7bU-rc-t3C" secondAttribute="bottom" constant="-20" id="Cbr-NS-Vqk"/>
                             <constraint firstItem="7bU-rc-t3C" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="OQX-ck-z6O"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BW7-zC-sG1" secondAttribute="bottom" constant="33" id="dHT-Ia-Dta"/>
                             <constraint firstItem="ZY9-7Y-AE2" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="u0v-eQ-koT"/>
                             <constraint firstItem="gjq-2m-IRm" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uDx-Sk-QDW"/>
                         </constraints>

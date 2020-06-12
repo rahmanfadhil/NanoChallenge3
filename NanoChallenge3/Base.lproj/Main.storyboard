@@ -199,7 +199,7 @@
                         <outlet property="inputPlayerLabel" destination="NJH-D5-IXG" id="hp7-iK-9fb"/>
                         <outlet property="playGameButton" destination="Bnd-Pf-53J" id="Cgj-ht-0cH"/>
                         <outlet property="secondPlayerName" destination="6XY-hH-t17" id="oww-OL-Ev0"/>
-                        <segue destination="BV1-FR-VrT" kind="show" identifier="toGame" id="Gax-oq-WMP"/>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="toGame" animates="NO" id="Gax-oq-WMP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnp-Qm-G8c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

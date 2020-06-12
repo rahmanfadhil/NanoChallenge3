@@ -42,7 +42,6 @@ class GameViewController: UIViewController, GameDelegate {
             
             view.showsFPS = true
             view.showsNodeCount = true
-            view.showsPhysics = true
         }
     }
 
