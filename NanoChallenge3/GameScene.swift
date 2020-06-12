@@ -85,7 +85,8 @@ class GameScene: SKScene, GameDelegate {
     func addBlock(name: String, position: CGPoint) {
         // Create block sprite node
         let node = SKSpriteNode(imageNamed: name)
-        
+        node.color = UIColor.red
+        node.colorBlendFactor = 0.8
         // Position block randomly in the screen
         node.position = position
         
@@ -335,8 +336,6 @@ class GameScene: SKScene, GameDelegate {
 //            audioFallBrick()
             if nearest < 250 {
                 gameViewDelegate?.loose()
-            } else if nearest == 222 {
-//                audioFallBrick()
             }
         }
     }
@@ -382,5 +381,4 @@ class GameScene: SKScene, GameDelegate {
                }
         setCountdown()
         }
-    
 }
