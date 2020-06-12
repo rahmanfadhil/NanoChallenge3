@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 // TODO: play background music.
 // TODO: play a sound when a block collide with other block.
@@ -16,6 +17,8 @@ import GameplayKit
 // TODO: rotate the screen 180 degree each time the player dropped a block.
 
 class GameScene: SKScene {
+    
+    var audioPlayer: AVAudioPlayer!
     
     // Score text
     private var scoreLabel = SKLabelNode(text: "Score: 0")
@@ -176,6 +179,7 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
+            audioSelectBrick()
             let location = touch.location(in: self)
             let touchedNodes = nodes(at: location)
 
@@ -238,6 +242,37 @@ class GameScene: SKScene {
         }
     }
     
+    //Play the sound effects
+    //When touch select a brick
+    func audioSelectBrick(){
+        guard let url = Bundle.main.url(forResource: "selectBrick", withExtension: "m4a") else {
+            print("error to get the m4a file")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        audioPlayer?.play()
+    }
+    
+    //When putting the brick
+    func audioPutBrick(){
+        guard let url = Bundle.main.url(forResource: "putBrick", withExtension: "m4a") else {
+            print("error to get the m4a file")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        audioPlayer?.play()
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         // Get all block distances
         let blockDistances = blocks.map { (node) in
@@ -274,6 +309,7 @@ class GameScene: SKScene {
             // When a block is dropped, re-display random block options to the screen
             displayBlockOptions()
         }
+        audioPutBrick()
         
         // Remove the currently dragged node
         currentNode = nil

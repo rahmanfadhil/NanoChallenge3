@@ -15,6 +15,14 @@
 		1606709E2490C928002B06D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1606709C2490C928002B06D7 /* Main.storyboard */; };
 		160670A02490C92A002B06D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1606709F2490C92A002B06D7 /* Assets.xcassets */; };
 		160670A32490C92A002B06D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 160670A12490C92A002B06D7 /* LaunchScreen.storyboard */; };
+		B78697EE2492791700AAB110 /* golden-dragon-solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B78697ED2492791700AAB110 /* golden-dragon-solid.ttf */; };
+		B78697F02492792400AAB110 /* norwester.otf in Resources */ = {isa = PBXBuildFile; fileRef = B78697EF2492792400AAB110 /* norwester.otf */; };
+		B78697F3249282F600AAB110 /* game-bg-music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B78697F2249282F600AAB110 /* game-bg-music.mp3 */; };
+		B78697F72492913000AAB110 /* putBrick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B78697F42492913000AAB110 /* putBrick.m4a */; };
+		B78697FC2492919400AAB110 /* fallBrick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B78697FA2492919300AAB110 /* fallBrick.m4a */; };
+		B78697FD2492919400AAB110 /* selectBrick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B78697FB2492919400AAB110 /* selectBrick.m4a */; };
+		B7DF72952492734E0064F6B1 /* StartGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DF72942492734E0064F6B1 /* StartGameVC.swift */; };
+		B7DF7297249273A70064F6B1 /* PlayersNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DF7296249273A70064F6B1 /* PlayersNameVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +36,14 @@
 		1606709F2490C92A002B06D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		160670A22490C92A002B06D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		160670A42490C92A002B06D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B78697ED2492791700AAB110 /* golden-dragon-solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "golden-dragon-solid.ttf"; sourceTree = "<group>"; };
+		B78697EF2492792400AAB110 /* norwester.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = norwester.otf; sourceTree = "<group>"; };
+		B78697F2249282F600AAB110 /* game-bg-music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "game-bg-music.mp3"; sourceTree = "<group>"; };
+		B78697F42492913000AAB110 /* putBrick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = putBrick.m4a; sourceTree = "<group>"; };
+		B78697FA2492919300AAB110 /* fallBrick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = fallBrick.m4a; sourceTree = "<group>"; };
+		B78697FB2492919400AAB110 /* selectBrick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectBrick.m4a; sourceTree = "<group>"; };
+		B7DF72942492734E0064F6B1 /* StartGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameVC.swift; sourceTree = "<group>"; };
+		B7DF7296249273A70064F6B1 /* PlayersNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersNameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +76,11 @@
 		160670912490C928002B06D7 /* NanoChallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				B78697F2249282F600AAB110 /* game-bg-music.mp3 */,
+				B78697FA2492919300AAB110 /* fallBrick.m4a */,
+				B78697FB2492919400AAB110 /* selectBrick.m4a */,
+				B78697F42492913000AAB110 /* putBrick.m4a */,
+				B78697EC2492790200AAB110 /* fonts */,
 				160670922490C928002B06D7 /* AppDelegate.swift */,
 				160670942490C928002B06D7 /* GameScene.sks */,
 				160670962490C928002B06D7 /* Actions.sks */,
@@ -69,8 +90,19 @@
 				1606709F2490C92A002B06D7 /* Assets.xcassets */,
 				160670A12490C92A002B06D7 /* LaunchScreen.storyboard */,
 				160670A42490C92A002B06D7 /* Info.plist */,
+				B7DF72942492734E0064F6B1 /* StartGameVC.swift */,
+				B7DF7296249273A70064F6B1 /* PlayersNameVC.swift */,
 			);
 			path = NanoChallenge3;
+			sourceTree = "<group>";
+		};
+		B78697EC2492790200AAB110 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B78697EF2492792400AAB110 /* norwester.otf */,
+				B78697ED2492791700AAB110 /* golden-dragon-solid.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,11 +163,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B78697FD2492919400AAB110 /* selectBrick.m4a in Resources */,
 				1606709E2490C928002B06D7 /* Main.storyboard in Resources */,
 				160670952490C928002B06D7 /* GameScene.sks in Resources */,
 				160670A02490C92A002B06D7 /* Assets.xcassets in Resources */,
 				160670A32490C92A002B06D7 /* LaunchScreen.storyboard in Resources */,
+				B78697EE2492791700AAB110 /* golden-dragon-solid.ttf in Resources */,
+				B78697F3249282F600AAB110 /* game-bg-music.mp3 in Resources */,
+				B78697F02492792400AAB110 /* norwester.otf in Resources */,
 				160670972490C928002B06D7 /* Actions.sks in Resources */,
+				B78697F72492913000AAB110 /* putBrick.m4a in Resources */,
+				B78697FC2492919400AAB110 /* fallBrick.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +185,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				160670992490C928002B06D7 /* GameScene.swift in Sources */,
+				B7DF72952492734E0064F6B1 /* StartGameVC.swift in Sources */,
 				1606709B2490C928002B06D7 /* GameViewController.swift in Sources */,
+				B7DF7297249273A70064F6B1 /* PlayersNameVC.swift in Sources */,
 				160670932490C928002B06D7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,6 +333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 94AQ28YXX2;
 				INFOPLIST_FILE = NanoChallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -310,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 94AQ28YXX2;
 				INFOPLIST_FILE = NanoChallenge3/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
