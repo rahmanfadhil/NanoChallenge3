@@ -16,8 +16,6 @@ protocol GameDelegate {
 
 class GameViewController: UIViewController, GameDelegate {
     
-    var isRotated = false
-    
     var player1: String?
     var player2: String?
 
