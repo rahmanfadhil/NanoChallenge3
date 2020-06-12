@@ -331,11 +331,8 @@ class GameScene: SKScene, GameDelegate {
         
         // Get the nearest distance and update the score
         if let nearest = minBlockDistances.min() {
-            audioFallBrick()
             if nearest < 250 {
                 gameViewDelegate?.loose()
-            } else if nearest == 222 {
-//                audioFallBrick()
             }
         }
     }
@@ -381,5 +378,4 @@ class GameScene: SKScene, GameDelegate {
                }
         setCountdown()
         }
-    
 }
