@@ -86,7 +86,7 @@ class GameScene: SKScene, GameDelegate {
         // Create block sprite node
         let node = SKSpriteNode(imageNamed: name)
         node.color = UIColor.red
-        node.colorBlendFactor = 0.8
+        node.colorBlendFactor = 0.6
         // Position block randomly in the screen
         node.position = position
         
@@ -231,6 +231,7 @@ class GameScene: SKScene, GameDelegate {
         // Shuffle all available block types, so that we can get a random block types.
         let blocks = availableBlockTypes.shuffled()
         
+        
         // The positions of each block options. This value will never changed.
         let blockLocations = [
             CGPoint(x: frame.midX - 200, y: frame.minY + 150),
@@ -251,12 +252,14 @@ class GameScene: SKScene, GameDelegate {
             node.position = location
             node.name = block
             node.setScale(0.175)
-            
+            node.color = UIColor.red
+            node.colorBlendFactor = 0.6
             // Add node to the scene
             addChild(node)
             
             // Add node to blockOptions property, so that we can remove it later.
             blockOptions.append(node)
+            
         }
     }
     
