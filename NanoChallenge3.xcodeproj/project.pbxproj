@@ -21,6 +21,7 @@
 		B78697F72492913000AAB110 /* putBrick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B78697F42492913000AAB110 /* putBrick.m4a */; };
 		B78697FC2492919400AAB110 /* fallBrick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B78697FA2492919300AAB110 /* fallBrick.m4a */; };
 		B78697FD2492919400AAB110 /* selectBrick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B78697FB2492919400AAB110 /* selectBrick.m4a */; };
+		B7AB42FD24936FF60073564A /* buttonClick.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7AB42FC24936FF60073564A /* buttonClick.m4a */; };
 		B7DF72952492734E0064F6B1 /* StartGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DF72942492734E0064F6B1 /* StartGameVC.swift */; };
 		B7DF7297249273A70064F6B1 /* PlayersNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DF7296249273A70064F6B1 /* PlayersNameVC.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		B78697F42492913000AAB110 /* putBrick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = putBrick.m4a; sourceTree = "<group>"; };
 		B78697FA2492919300AAB110 /* fallBrick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = fallBrick.m4a; sourceTree = "<group>"; };
 		B78697FB2492919400AAB110 /* selectBrick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = selectBrick.m4a; sourceTree = "<group>"; };
+		B7AB42FC24936FF60073564A /* buttonClick.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = buttonClick.m4a; sourceTree = "<group>"; };
 		B7DF72942492734E0064F6B1 /* StartGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartGameVC.swift; sourceTree = "<group>"; };
 		B7DF7296249273A70064F6B1 /* PlayersNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersNameVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 		160670912490C928002B06D7 /* NanoChallenge3 */ = {
 			isa = PBXGroup;
 			children = (
+				B7AB42FC24936FF60073564A /* buttonClick.m4a */,
 				B78697F2249282F600AAB110 /* game-bg-music.mp3 */,
 				B78697FA2492919300AAB110 /* fallBrick.m4a */,
 				B78697FB2492919400AAB110 /* selectBrick.m4a */,
@@ -168,6 +171,7 @@
 				160670952490C928002B06D7 /* GameScene.sks in Resources */,
 				160670A02490C92A002B06D7 /* Assets.xcassets in Resources */,
 				160670A32490C92A002B06D7 /* LaunchScreen.storyboard in Resources */,
+				B7AB42FD24936FF60073564A /* buttonClick.m4a in Resources */,
 				B78697EE2492791700AAB110 /* golden-dragon-solid.ttf in Resources */,
 				B78697F3249282F600AAB110 /* game-bg-music.mp3 in Resources */,
 				B78697F02492792400AAB110 /* norwester.otf in Resources */,

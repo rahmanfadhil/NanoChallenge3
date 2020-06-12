@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 // TODO: button clicked sound
 class PlayersNameVC: UIViewController, UITextFieldDelegate {
@@ -15,6 +16,8 @@ class PlayersNameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstPlayerName: UITextField!
     @IBOutlet weak var secondPlayerName: UITextField!
     @IBOutlet weak var playGameButton: UIButton!
+    
+    var playButton: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,8 +52,23 @@ class PlayersNameVC: UIViewController, UITextFieldDelegate {
         secondPlayerName.resignFirstResponder()
         return true
     }
+    
+    func playButtonClicked(){
+        guard let url = Bundle.main.url(forResource: "buttonClick", withExtension: "m4a") else {
+            print("error to get the m4a file")
+            return
+        }
+
+        do {
+            playButton = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        playButton.play()
+    }
 
     @IBAction func playTapped(_ sender: UIButton) {
+        playButtonClicked()
         performSegue(withIdentifier: "toGame", sender: nil)
     }
     

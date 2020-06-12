@@ -51,6 +51,7 @@
                                 </constraints>
                                 <state key="normal" image="startButton"/>
                                 <connections>
+                                    <action selector="buttonClick:" destination="LRA-Se-U6A" eventType="touchUpInside" id="2rU-6l-QaG"/>
                                     <segue destination="TVl-4p-v2y" kind="show" animates="NO" id="tC5-48-Myk"/>
                                 </connections>
                             </button>
@@ -70,6 +71,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="l5D-Mx-KRS"/>
                     </view>
+                    <connections>
+                        <outlet property="buttonStart" destination="jg0-3U-DLz" id="8hr-XU-ANY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zi4-2l-BLl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
