@@ -25,7 +25,7 @@ class PlayersNameVC: UIViewController, UITextFieldDelegate {
             playGameButton.isEnabled = true
         }
     }
-
+   
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         firstPlayerName.resignFirstResponder()
