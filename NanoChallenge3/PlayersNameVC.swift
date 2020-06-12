@@ -14,16 +14,22 @@ class PlayersNameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstPlayerName: UITextField!
     @IBOutlet weak var secondPlayerName: UITextField!
     @IBOutlet weak var playGameButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         inputPlayerLabel.textColor = UIColor.white
-        
+        if firstPlayerName.text?.isEmpty == true || secondPlayerName.text?.isEmpty == true{
+                   playGameButton.isEnabled = false
+                   playGameButton.imageView?.image = #imageLiteral(resourceName: "playNotActive")
+        } else {
+            playGameButton.isEnabled = true
+        }
     }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         firstPlayerName.resignFirstResponder()
         secondPlayerName.resignFirstResponder()
-        
         return true
     }
 
