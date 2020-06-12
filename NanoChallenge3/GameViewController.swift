@@ -16,12 +16,14 @@ protocol GameDelegate {
 
 class GameViewController: UIViewController, GameDelegate {
     
+    var isRotated = false
+    
     var player1: String?
     var player2: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
@@ -69,5 +71,10 @@ class GameViewController: UIViewController, GameDelegate {
     
     func loose() {
         print("loose!")
+    }
+    
+    // Rotate screen 180 degree
+    func rotateScreen() {
+        view.transform = view.transform.rotated(by: .pi)
     }
 }

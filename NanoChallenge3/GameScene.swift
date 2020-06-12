@@ -353,5 +353,6 @@ class GameScene: SKScene, GameDelegate {
     func changePlayer() {
         displayBlockOptions()
         setCountdown()
+        gameViewDelegate?.rotateScreen()
     }
 }
