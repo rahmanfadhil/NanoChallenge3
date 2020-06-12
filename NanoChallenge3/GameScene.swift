@@ -218,6 +218,7 @@ class GameScene: SKScene, GameDelegate {
     // Display all available blocks for the user to drop.
     // The item will changed each time the user dropped a new block.
     func displayBlockOptions() {
+       
         // Remove previous block options from the screen
         if blockOptions.count > 0 {
             for block in blockOptions {
@@ -331,7 +332,7 @@ class GameScene: SKScene, GameDelegate {
         
         // Get the nearest distance and update the score
         if let nearest = minBlockDistances.min() {
-            audioFallBrick()
+//            audioFallBrick()
             if nearest < 250 {
                 gameViewDelegate?.loose()
             } else if nearest == 222 {
