@@ -12,11 +12,13 @@ import AVFoundation
 // TODO: button clicked sound
 class StartGameVC: UIViewController {
     
+    @IBOutlet weak var buttonStart: UIButton!
     var audioPlayer: AVAudioPlayer!
+    var buttonClick: AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        playAudioFromProject()
+        playAudioFromProject()
         
     }
     
@@ -32,7 +34,25 @@ class StartGameVC: UIViewController {
             print("audio file error")
         }
         audioPlayer?.play()
-        audioPlayer.setVolume(0.3, fadeDuration: 0)
-        audioPlayer.numberOfLoops = -1
+        audioPlayer?.setVolume(0.3, fadeDuration: 0)
+        audioPlayer?.numberOfLoops = -1
+    }
+    
+    func buttonClicked(){
+        guard let url = Bundle.main.url(forResource: "buttonClick", withExtension: "m4a") else {
+            print("error to get the m4a file")
+            return
+        }
+
+        do {
+            buttonClick = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        buttonClick.play()
+    }
+    
+    @IBAction func buttonClick(_ sender: Any) {
+        buttonClicked()
     }
 }

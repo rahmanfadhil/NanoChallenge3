@@ -76,7 +76,7 @@ class GameScene: SKScene, GameDelegate {
         setCountdown()
         
         // Add physics body to the scene, prevent blocks from escaping the scene
-        physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: -(828 / 2), y: 222, width: 828 * 2, height: 5040))
+        physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(x: -(828 / 2), y: 240, width: 828 * 2, height: 5040))
     }
     
     func setCountdown() {
@@ -89,12 +89,12 @@ class GameScene: SKScene, GameDelegate {
         // Create block sprite node
         let node = SKSpriteNode(imageNamed: name)
         node.color = UIColor.red
-        node.colorBlendFactor = 0.6
+        node.colorBlendFactor = 0.4
         // Position block randomly in the screen
         node.position = position
         
         // Minimize block size
-        node.setScale(0.175)
+        node.setScale(0.25)
         
         // Set the anchor point of the block
         node.anchorPoint = CGPoint(x: 0, y: 0)
@@ -237,9 +237,9 @@ class GameScene: SKScene, GameDelegate {
         
         // The positions of each block options. This value will never changed.
         let blockLocations = [
-            CGPoint(x: frame.midX - 200, y: frame.minY + 150),
-            CGPoint(x: frame.midX, y: frame.minY + 150),
-            CGPoint(x: frame.midX + 200, y: frame.minY + 150)
+            CGPoint(x: frame.midX - 200, y: frame.minY + 120),
+            CGPoint(x: frame.midX, y: frame.minY + 120),
+            CGPoint(x: frame.midX + 200, y: frame.minY + 120)
         ]
         
         // Display each block options
@@ -254,9 +254,9 @@ class GameScene: SKScene, GameDelegate {
             let node = SKSpriteNode(imageNamed: block)
             node.position = location
             node.name = block
-            node.setScale(0.175)
+            node.setScale(0.25)
             node.color = UIColor.red
-            node.colorBlendFactor = 0.6
+            node.colorBlendFactor = 0.5
             // Add node to the scene
             addChild(node)
             
@@ -312,6 +312,7 @@ class GameScene: SKScene, GameDelegate {
         audioPlayer?.play()
     }
     
+    
     override func update(_ currentTime: TimeInterval) {
         let timeLeft = countdownEnd!.timeIntervalSinceNow
         
@@ -339,7 +340,7 @@ class GameScene: SKScene, GameDelegate {
         
         // Get the nearest distance and update the score
         if let nearest = minBlockDistances.min() {
-            if nearest < 250 {
+            if nearest < 300 {
                 gameViewDelegate?.loose()
             }
         }
