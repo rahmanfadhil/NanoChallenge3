@@ -97,7 +97,7 @@
                                 </constraints>
                                 <state key="normal" image="playActive"/>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" animates="NO" id="5Ru-1M-CTo"/>
+                                    <action selector="playTapped:" destination="TVl-4p-v2y" eventType="touchUpInside" id="6fL-nN-nuv"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJH-D5-IXG">
@@ -110,7 +110,7 @@
                                     <fragment content="Input Players Name">
                                         <attributes>
                                             <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <font key="NSFont" size="30" name="GoldenDragonSolid"/>
+                                            <font key="NSFont" metaFont="system" size="30"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -199,6 +199,7 @@
                         <outlet property="inputPlayerLabel" destination="NJH-D5-IXG" id="hp7-iK-9fb"/>
                         <outlet property="playGameButton" destination="Bnd-Pf-53J" id="Cgj-ht-0cH"/>
                         <outlet property="secondPlayerName" destination="6XY-hH-t17" id="oww-OL-Ev0"/>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="toGame" id="Gax-oq-WMP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gnp-Qm-G8c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

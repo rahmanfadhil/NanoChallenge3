@@ -27,4 +27,13 @@ class PlayersNameVC: UIViewController, UITextFieldDelegate {
         return true
     }
 
+    @IBAction func playTapped(_ sender: UIButton) {
+        performSegue(withIdentifier: "toGame", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? GameDelegate {
+            vc.setPlayerNames(player1: firstPlayerName.text!, player2: secondPlayerName.text!)
+        }
+    }
 }

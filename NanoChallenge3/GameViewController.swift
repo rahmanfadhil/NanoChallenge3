@@ -10,16 +10,27 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+protocol GameDelegate {
+    func setPlayerNames(player1: String, player2: String)
+}
+
+class GameViewController: UIViewController, GameDelegate {
+    
+    var player1: String?
+    var player2: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                
+                if let player1 = player1, let player2 = player2 {
+                    scene.setPlayerNames(player1: player1, player2: player2)
+                }
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -46,5 +57,10 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    func setPlayerNames(player1: String, player2: String) {
+        self.player1 = player1
+        self.player2 = player2
     }
 }

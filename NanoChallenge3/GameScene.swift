@@ -16,7 +16,7 @@ import AVFoundation
 // TODO: when a block touched the ground, end the game.
 // TODO: rotate the screen 180 degree each time the player dropped a block.
 
-class GameScene: SKScene {
+class GameScene: SKScene, GameDelegate {
     
     var audioPlayer: AVAudioPlayer!
     
@@ -59,7 +59,6 @@ class GameScene: SKScene {
         scoreLabel.fontColor = UIColor.black
         scoreLabel.fontSize = 48
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.maxY - 200)
-        addChild(scoreLabel)
         
         // Add physics body to the scene, prevent blocks from escaping the scene
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame.inset(by: UIEdgeInsets.init(top: 300, left: 0, bottom: 0, right: 0)))
@@ -313,5 +312,10 @@ class GameScene: SKScene {
         
         // Remove the currently dragged node
         currentNode = nil
+    }
+    
+    func setPlayerNames(player1: String, player2: String) {
+        print(player1)
+        print(player2)
     }
 }
