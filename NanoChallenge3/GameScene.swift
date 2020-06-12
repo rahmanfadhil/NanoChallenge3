@@ -88,7 +88,8 @@ class GameScene: SKScene, GameDelegate {
     func addBlock(name: String, position: CGPoint) {
         // Create block sprite node
         let node = SKSpriteNode(imageNamed: name)
-        
+        node.color = UIColor.red
+        node.colorBlendFactor = 0.6
         // Position block randomly in the screen
         node.position = position
         
@@ -221,6 +222,7 @@ class GameScene: SKScene, GameDelegate {
     // Display all available blocks for the user to drop.
     // The item will changed each time the user dropped a new block.
     func displayBlockOptions() {
+       
         // Remove previous block options from the screen
         if blockOptions.count > 0 {
             for block in blockOptions {
@@ -231,6 +233,7 @@ class GameScene: SKScene, GameDelegate {
         
         // Shuffle all available block types, so that we can get a random block types.
         let blocks = availableBlockTypes.shuffled()
+        
         
         // The positions of each block options. This value will never changed.
         let blockLocations = [
@@ -252,12 +255,14 @@ class GameScene: SKScene, GameDelegate {
             node.position = location
             node.name = block
             node.setScale(0.175)
-            
+            node.color = UIColor.red
+            node.colorBlendFactor = 0.6
             // Add node to the scene
             addChild(node)
             
             // Add node to blockOptions property, so that we can remove it later.
             blockOptions.append(node)
+            
         }
     }
     
