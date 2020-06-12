@@ -16,6 +16,8 @@ import AVFoundation
 // TODO: delay screen when change player.
 // TODO: finish screen with tower image.
 // TODO: display player names.
+// TODO: move camera.
+// TODO: button clicked sound
 
 class GameScene: SKScene, GameDelegate {
     
