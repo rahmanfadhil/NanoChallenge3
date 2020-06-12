@@ -166,7 +166,7 @@ class GameScene: SKScene, GameDelegate {
                 CGPoint(x: width, y: height / 2),
                 CGPoint(x: width, y: 0),
                 CGPoint(x: 0, y: 0),
-                CGPoint(x: 0, y: width / 2),
+                CGPoint(x: 0, y: height / 2),
                 CGPoint(x: width / 3, y: height / 2),
                 CGPoint(x: width / 3, y: height)
             ])
@@ -283,6 +283,20 @@ class GameScene: SKScene, GameDelegate {
         audioPlayer?.play()
     }
     
+    func audioFallBrick(){
+        guard let url = Bundle.main.url(forResource: "fallBrick", withExtension: "m4a") else {
+            print("error to get the m4a file")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        audioPlayer?.play()
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         let timeLeft = countdownEnd!.timeIntervalSinceNow
         
@@ -312,6 +326,8 @@ class GameScene: SKScene, GameDelegate {
         if let nearest = minBlockDistances.min() {
             if nearest < 250 {
                 gameViewDelegate?.loose()
+            } else if nearest == 222 {
+                audioFallBrick()
             }
         }
     }
@@ -353,6 +369,10 @@ class GameScene: SKScene, GameDelegate {
     func changePlayer() {
         displayBlockOptions()
         setCountdown()
-        gameViewDelegate?.rotateScreen()
+//        gameViewDelegate?.rotateScreen()
+    }
+    
+    func playerGetReady(){
+        
     }
 }
