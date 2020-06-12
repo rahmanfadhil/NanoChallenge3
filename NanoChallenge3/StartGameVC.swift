@@ -31,5 +31,6 @@ class StartGameVC: UIViewController {
             print("audio file error")
         }
         audioPlayer?.play()
+        audioPlayer.setVolume(0.3, fadeDuration: 0)
     }
 }
