@@ -289,8 +289,9 @@ class GameScene: SKScene, GameDelegate {
         audioPlayer?.play()
     }
     
+    //When bricks fall
     func audioFallBrick(){
-        guard let url = Bundle.main.url(forResource: "fallBrick", withExtension: "m4a") else {
+        guard let url = Bundle.main.url(forResource: "putBrick", withExtension: "m4a") else {
             print("error to get the m4a file")
             return
         }
@@ -330,10 +331,11 @@ class GameScene: SKScene, GameDelegate {
         
         // Get the nearest distance and update the score
         if let nearest = minBlockDistances.min() {
+            audioFallBrick()
             if nearest < 250 {
                 gameViewDelegate?.loose()
             } else if nearest == 222 {
-                audioFallBrick()
+//                audioFallBrick()
             }
         }
     }
