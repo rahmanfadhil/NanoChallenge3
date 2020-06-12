@@ -337,8 +337,7 @@ class GameScene: SKScene, GameDelegate {
             // Create a new block
             addBlock(name: node.name!, position: location)
 
-            // When a block is dropped, re-display random block options to the screen
-            changePlayer()
+        
         }
         audioPutBrick()
         
