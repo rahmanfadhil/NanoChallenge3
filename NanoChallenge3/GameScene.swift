@@ -406,14 +406,56 @@ class GameScene: SKScene, GameDelegate {
     func changePlayer() {
         displayBlockOptions()
         setPlayerName()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        self.gameViewDelegate?.rotateScreen()
-//        }
-        self.setCountdown()
+        
+        // Setup overlay
+        let overlay = SKSpriteNode(imageNamed: "blueOverlay")
+        overlay.position = CGPoint(x: frame.midX, y: frame.midY)
+        overlay.size = CGSize(width: 828, height: 1792)
+        overlay.zPosition = 8
+        addChild(overlay)
+        
+        // Change player text
+        let changePlayerLabel = SKLabelNode(fontNamed: "GoldenDragonSolid")
+        changePlayerLabel.text = "CHANGE PLAYER"
+        changePlayerLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        changePlayerLabel.zPosition = 9
+        changePlayerLabel.fontSize = 86
+        addChild(changePlayerLabel)
+        
+        // Player name text
+        let playerName: String = currentPlayer == 1 ? playerOne : playerTwo
+        let playerNameLabel = SKLabelNode(fontNamed: "Norwester-Regular")
+        playerNameLabel.text = "\(playerName)'S TURN"
+        playerNameLabel.zPosition = 9
+        playerNameLabel.fontSize = 64
+        playerNameLabel.position = CGPoint(x: frame.midX, y: frame.midY - 120)
+        
+        addChild(playerNameLabel)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.gameViewDelegate?.rotateScreen()
+            overlay.removeFromParent()
+            changePlayerLabel.removeFromParent()
+            playerNameLabel.removeFromParent()
+        }
+        
+        setCountdown()
     }
     
     func finishGame() {
         print("finish game!")
+        
+        // Setup background
+        guard let background = childNode(withName: "gameSceneBg") as? SKSpriteNode else { return }
+        background.zPosition = 10
+        background.alpha = 1
+        
+        // Setup overlay
+        let overlay = SKSpriteNode(imageNamed: "blueOverlay")
+        overlay.position = CGPoint(x: frame.midX, y: frame.midY)
+        overlay.size = CGSize(width: 828, height: 1792)
+        overlay.zPosition = 11
+        addChild(overlay)
     }
 }
 
