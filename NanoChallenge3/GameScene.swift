@@ -26,6 +26,8 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, GameDelegate {
     
+    var lastDroppedBlock: SKSpriteNode?
+    
     var finishedGameSprites = [SKNode]()
     
     var isFinished = false
@@ -382,15 +384,16 @@ class GameScene: SKScene, GameDelegate {
                 score = newScore
                 
                 if farthest > frame.midY {
-                    print("naik!")
-                    camera?.position.y += 50
-                    
-                    for node in followCamera {
-                        node.position.y += 50
-                    }
-                    
-                    for node in blockOptions {
-                        node.position.y += 50
+                    if let blockHeight = lastDroppedBlock?.size.height {
+                        camera?.position.y += blockHeight
+                        
+                        for node in followCamera {
+                            node.position.y += blockHeight
+                        }
+                        
+                        for node in blockOptions {
+                            node.position.y += blockHeight
+                        }
                     }
                 }
             }
@@ -419,10 +422,12 @@ class GameScene: SKScene, GameDelegate {
             addBlock(name: node.name!, position: location)
         
             audioPutBrick()
+            
+            lastDroppedBlock = node
+
+            // Remove the currently dragged node
+            currentNode = nil
         }
-        
-        // Remove the currently dragged node
-        currentNode = nil
     }
     
     func setPlayerNames(player1: String, player2: String) {
@@ -489,7 +494,7 @@ class GameScene: SKScene, GameDelegate {
         overlay.zPosition = 11
         addChild(overlay)
         
-        let totalScore = Double(score) * 0.3
+        let totalScore = Double(score) * 0.15
         
         print(score)
         print(totalScore)
@@ -568,6 +573,18 @@ class GameScene: SKScene, GameDelegate {
     }
     
     func playAgain() {
+        let downTo = camera!.position.y - frame.midY
+        
+        camera?.position.y -= downTo
+        
+        for node in followCamera {
+            node.position.y -= downTo
+        }
+        
+        for node in blockOptions {
+            node.position.y -= downTo
+        }
+        
         isFinished = false
         physicsBody?.categoryBitMask = PhysicsCategory.scene
         setCountdown()
