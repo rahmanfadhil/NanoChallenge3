@@ -18,7 +18,7 @@ class StartGameVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        playAudioFromProject()
+//        playAudioFromProject()
         
     }
     
