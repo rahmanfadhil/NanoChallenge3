@@ -456,6 +456,34 @@ class GameScene: SKScene, GameDelegate {
         overlay.size = CGSize(width: 828, height: 1792)
         overlay.zPosition = 11
         addChild(overlay)
+        
+        let totalScore = Double(score) * 0.3
+        
+        print(score)
+        print(totalScore)
+        
+        if totalScore > 300 {
+            var towerName: String = ""
+            
+            if 301...400 ~= totalScore {
+                towerName = "300m-achieve"
+            } else if 401...500 ~= totalScore {
+                towerName = "400m-achieve"
+            } else if 501...600 ~= totalScore {
+                towerName = "500m-achieve"
+            } else if 601...700 ~= totalScore {
+                towerName = "600m-achieve"
+            } else if 701...800 ~= totalScore {
+                towerName = "700m-achieve"
+            } else {
+                towerName = "800m-achieve"
+            }
+            
+            let towerImage = SKSpriteNode(imageNamed: towerName)
+            towerImage.position = CGPoint(x: frame.midX, y: frame.midY)
+            towerImage.zPosition = 12
+            addChild(towerImage)
+        }
     }
 }
 
