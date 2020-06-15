@@ -505,7 +505,7 @@ class GameScene: SKScene, GameDelegate {
         gameFinishedLabel.text = "YOU BOTH HAVE REACHED"
         gameFinishedLabel.position = CGPoint(x: frame.midX, y: frame.midY + 500)
         gameFinishedLabel.zPosition = 12
-        gameFinishedLabel.fontSize = 64
+        gameFinishedLabel.fontSize = 48
         addChild(gameFinishedLabel)
         
         // Score text
@@ -513,7 +513,7 @@ class GameScene: SKScene, GameDelegate {
         let scoreLabel = SKLabelNode(fontNamed: "Norwester-Regular")
         scoreLabel.text = "\(totalScoreString) meters"
         scoreLabel.zPosition = 12
-        scoreLabel.fontSize = 48
+        scoreLabel.fontSize = 64
         scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY + 400)
         addChild(scoreLabel)
         
