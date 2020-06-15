@@ -385,8 +385,6 @@ class GameScene: SKScene, GameDelegate {
                     print("naik!")
                     camera?.position.y += 50
                     
-                    isCameraNaik = true
-                    
                     for node in followCamera {
                         node.position.y += 50
                     }
