@@ -26,6 +26,10 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, GameDelegate {
     
+    var finishedGameSprites = [SKNode]()
+    
+    var isFinished = false
+    
     var playerLabel: SKLabelNode?
     var playerOne: String!
     var playerTwo: String!
@@ -248,6 +252,10 @@ class GameScene: SKScene, GameDelegate {
                     
                     audioSelectBrick()
                 }
+                
+                if node.name == "playAgainButton" {
+                    playAgain()
+                }
             }
         }
     }
@@ -352,7 +360,7 @@ class GameScene: SKScene, GameDelegate {
         
         // Set countdown text
         countdownLabel.text = String(format: "%.1f", timeLeft)
-        if timeLeft < 0 {
+        if !isFinished && timeLeft < 0 {
             changePlayer()
         }
         
@@ -442,6 +450,12 @@ class GameScene: SKScene, GameDelegate {
     }
     
     func finishGame() {
+        for block in blocks {
+            block.removeFromParent()
+        }
+        
+        isFinished = true
+        
         audioFinishGame()
         
         // Setup background
@@ -461,6 +475,8 @@ class GameScene: SKScene, GameDelegate {
         print(score)
         print(totalScore)
         
+        var towerImage: SKSpriteNode?
+        
         if totalScore > 300 {
             var towerName: String = ""
             
@@ -478,10 +494,10 @@ class GameScene: SKScene, GameDelegate {
                 towerName = "800m-achieve"
             }
             
-            let towerImage = SKSpriteNode(imageNamed: towerName)
-            towerImage.position = CGPoint(x: frame.midX, y: frame.midY)
-            towerImage.zPosition = 12
-            addChild(towerImage)
+            towerImage = SKSpriteNode(imageNamed: towerName)
+            towerImage?.position = CGPoint(x: frame.midX, y: frame.midY)
+            towerImage?.zPosition = 12
+            addChild(towerImage!)
         }
         
         // Reached text
@@ -504,7 +520,14 @@ class GameScene: SKScene, GameDelegate {
         let playAgainButton = SKSpriteNode(imageNamed: "playAgain")
         playAgainButton.position = CGPoint(x: frame.midX, y: frame.midY - 500)
         playAgainButton.zPosition = 12
+        playAgainButton.name = "playAgainButton"
         addChild(playAgainButton)
+        
+        finishedGameSprites = [playAgainButton, scoreLabel, gameFinishedLabel, overlay]
+        
+        if let towerImage = towerImage {
+            finishedGameSprites += [towerImage]
+        }
     }
     
     func audioFinishGame() {
@@ -519,6 +542,19 @@ class GameScene: SKScene, GameDelegate {
             print("audio file error")
         }
         audioPlayer?.play()
+    }
+    
+    func playAgain() {
+        isFinished = false
+        physicsBody?.categoryBitMask = PhysicsCategory.scene
+        setCountdown()
+        for node in finishedGameSprites {
+            node.removeFromParent()
+        }
+        
+        guard let background = childNode(withName: "gameSceneBg") as? SKSpriteNode else { return }
+        background.zPosition = -7
+        background.alpha = 0.4
     }
 }
 
