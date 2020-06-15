@@ -442,7 +442,7 @@ class GameScene: SKScene, GameDelegate {
     }
     
     func finishGame() {
-        print("finish game!")
+        audioFinishGame()
         
         // Setup background
         guard let background = childNode(withName: "gameSceneBg") as? SKSpriteNode else { return }
@@ -479,7 +479,7 @@ class GameScene: SKScene, GameDelegate {
             }
             
             let towerImage = SKSpriteNode(imageNamed: towerName)
-            towerImage.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+            towerImage.position = CGPoint(x: frame.midX, y: frame.midY)
             towerImage.zPosition = 12
             addChild(towerImage)
         }
@@ -487,7 +487,7 @@ class GameScene: SKScene, GameDelegate {
         // Reached text
         let gameFinishedLabel = SKLabelNode(fontNamed: "GoldenDragonSolid")
         gameFinishedLabel.text = "YOU BOTH HAVE REACHED"
-        gameFinishedLabel.position = CGPoint(x: frame.midX, y: frame.midY + 300)
+        gameFinishedLabel.position = CGPoint(x: frame.midX, y: frame.midY + 500)
         gameFinishedLabel.zPosition = 12
         gameFinishedLabel.fontSize = 64
         addChild(gameFinishedLabel)
@@ -498,8 +498,27 @@ class GameScene: SKScene, GameDelegate {
         scoreLabel.text = "\(totalScoreString) meters"
         scoreLabel.zPosition = 12
         scoreLabel.fontSize = 48
-        scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY + 200)
+        scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY + 400)
         addChild(scoreLabel)
+        
+        let playAgainButton = SKSpriteNode(imageNamed: "playAgain")
+        playAgainButton.position = CGPoint(x: frame.midX, y: frame.midY - 500)
+        playAgainButton.zPosition = 12
+        addChild(playAgainButton)
+    }
+    
+    func audioFinishGame() {
+        guard let url = Bundle.main.url(forResource: "finishGame", withExtension: "mp3") else {
+            print("error to get the mp3 file")
+            return
+        }
+
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("audio file error")
+        }
+        audioPlayer?.play()
     }
 }
 
