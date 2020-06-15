@@ -549,6 +549,8 @@ class GameScene: SKScene, GameDelegate {
         if let towerImage = towerImage {
             finishedGameSprites += [towerImage]
         }
+        
+        score = 0
     }
     
     func audioFinishGame() {
