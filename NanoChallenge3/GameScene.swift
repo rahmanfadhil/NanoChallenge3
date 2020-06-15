@@ -64,6 +64,8 @@ class GameScene: SKScene, GameDelegate {
         "straight-2"
     ]
     
+    var followCamera = [SKNode]()
+    
     // List of all blocks that has been dropped to the scene
     private var blocks = [SKSpriteNode]()
     
@@ -85,13 +87,14 @@ class GameScene: SKScene, GameDelegate {
         playerLabel?.fontColor = .black
         playerLabel?.position = CGPoint(x: frame.maxX - 175, y: 1630)
         addChild(playerLabel!)
+        followCamera.append(playerLabel!)
         
         // Countdown text
-        countdownLabel = childNode(withName: "countdownLabel") as? SKLabelNode
+        countdownLabel = camera?.childNode(withName: "countdownLabel") as? SKLabelNode
         countdownLabel.text = "0"
         
         // Change player text
-        changePlayerLabel = childNode(withName: "changePlayerLabel") as? SKLabelNode
+        changePlayerLabel = camera?.childNode(withName: "changePlayerLabel") as? SKLabelNode
         changePlayerLabel.text = ""
         
         setCountdown()
@@ -278,10 +281,11 @@ class GameScene: SKScene, GameDelegate {
         
         
         // The positions of each block options. This value will never changed.
+        
         let blockLocations = [
-            CGPoint(x: frame.midX - 250, y: frame.minY + 178),
-            CGPoint(x: frame.midX, y: frame.minY + 178),
-            CGPoint(x: frame.midX + 250, y: frame.minY + 178)
+            CGPoint(x: camera!.frame.midX - 250, y: camera!.frame.minY - 700),
+            CGPoint(x: camera!.frame.midX, y: camera!.frame.minY - 700),
+            CGPoint(x: camera!.frame.midX + 250, y: camera!.frame.minY - 700)
         ]
         
         // Display each block options
@@ -299,6 +303,7 @@ class GameScene: SKScene, GameDelegate {
             node.setScale(0.3)
             node.color = UIColor.red
             node.colorBlendFactor = 0.5
+            node.zPosition = 3
             // Add node to the scene
             addChild(node)
             
@@ -372,8 +377,24 @@ class GameScene: SKScene, GameDelegate {
         // Get the farthest distance and update the score
         if let farthest = maxBlockDistances.max() {
             let newScore = Int(farthest.rounded())
+            
             if newScore > score {
                 score = newScore
+                
+                if farthest > frame.midY {
+                    print("naik!")
+                    camera?.position.y += 50
+                    
+                    isCameraNaik = true
+                    
+                    for node in followCamera {
+                        node.position.y += 50
+                    }
+                    
+                    for node in blockOptions {
+                        node.position.y += 50
+                    }
+                }
             }
         }
     }
@@ -416,16 +437,16 @@ class GameScene: SKScene, GameDelegate {
         setPlayerName()
         
         // Setup overlay
-        let overlay = SKSpriteNode(imageNamed: "blueOverlay")
-        overlay.position = CGPoint(x: frame.midX, y: frame.midY)
-        overlay.size = CGSize(width: 828, height: 1792)
+        let overlay = SKSpriteNode(imageNamed: "redOverlay")
+        overlay.position = CGPoint(x: camera!.position.x, y: camera!.position.y)
+        overlay.size = CGSize(width: 828, height: 2500)
         overlay.zPosition = 8
         addChild(overlay)
         
         // Change player text
         let changePlayerLabel = SKLabelNode(fontNamed: "GoldenDragonSolid")
         changePlayerLabel.text = "CHANGE PLAYER"
-        changePlayerLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        changePlayerLabel.position = CGPoint(x: camera!.position.x, y: camera!.position.y)
         changePlayerLabel.zPosition = 9
         changePlayerLabel.fontSize = 86
         addChild(changePlayerLabel)
@@ -436,7 +457,7 @@ class GameScene: SKScene, GameDelegate {
         playerNameLabel.text = "\(playerName)'S TURN"
         playerNameLabel.zPosition = 9
         playerNameLabel.fontSize = 64
-        playerNameLabel.position = CGPoint(x: frame.midX, y: frame.midY - 120)
+        playerNameLabel.position = CGPoint(x: camera!.position.x, y: camera!.position.y - 120)
         addChild(playerNameLabel)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -465,7 +486,7 @@ class GameScene: SKScene, GameDelegate {
         
         // Setup overlay
         let overlay = SKSpriteNode(imageNamed: "blueOverlay")
-        overlay.position = CGPoint(x: frame.midX, y: frame.midY)
+        overlay.position = CGPoint(x: camera!.position.x, y: camera!.position.y)
         overlay.size = CGSize(width: 828, height: 1792)
         overlay.zPosition = 11
         addChild(overlay)
@@ -490,35 +511,37 @@ class GameScene: SKScene, GameDelegate {
                 towerName = "600m-achieve"
             } else if 701...800 ~= totalScore {
                 towerName = "700m-achieve"
-            } else {
+            } else if 801...900 ~= totalScore {
                 towerName = "800m-achieve"
+            } else {
+                towerName = "900m-achieve"
             }
             
             towerImage = SKSpriteNode(imageNamed: towerName)
-            towerImage?.position = CGPoint(x: frame.midX, y: frame.midY)
+            towerImage?.position = CGPoint(x: camera!.position.x, y: camera!.position.y)
             towerImage?.zPosition = 12
             addChild(towerImage!)
         }
         
         // Reached text
-        let gameFinishedLabel = SKLabelNode(fontNamed: "GoldenDragonSolid")
+        let gameFinishedLabel = SKLabelNode(fontNamed: "Norwester-Regular")
         gameFinishedLabel.text = "YOU BOTH HAVE REACHED"
-        gameFinishedLabel.position = CGPoint(x: frame.midX, y: frame.midY + 500)
+        gameFinishedLabel.position = CGPoint(x: camera!.position.x, y: camera!.position.y + 520)
         gameFinishedLabel.zPosition = 12
-        gameFinishedLabel.fontSize = 64
+        gameFinishedLabel.fontSize = 48
         addChild(gameFinishedLabel)
         
         // Score text
         let totalScoreString = String(format: "%.1f", totalScore)
-        let scoreLabel = SKLabelNode(fontNamed: "Norwester-Regular")
-        scoreLabel.text = "\(totalScoreString) meters"
+        let scoreLabel = SKLabelNode(fontNamed: "GoldenDragonSolid")
+        scoreLabel.text = "\(totalScoreString)m"
         scoreLabel.zPosition = 12
-        scoreLabel.fontSize = 48
-        scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY + 400)
+        scoreLabel.fontSize = 100
+        scoreLabel.position = CGPoint(x: camera!.position.x, y: camera!.position.y + 400)
         addChild(scoreLabel)
         
         let playAgainButton = SKSpriteNode(imageNamed: "playAgain")
-        playAgainButton.position = CGPoint(x: frame.midX, y: frame.midY - 500)
+        playAgainButton.position = CGPoint(x: camera!.position.x, y: camera!.position.y - 500)
         playAgainButton.zPosition = 12
         playAgainButton.name = "playAgainButton"
         addChild(playAgainButton)
