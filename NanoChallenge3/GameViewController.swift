@@ -70,8 +70,22 @@ class GameViewController: UIViewController, GameDelegate {
         print("loose!")
     }
     
+    var isRotated = false
+    
     // Rotate screen 180 degree
     func rotateScreen() {
+        if isRotated {
+            isRotated = false
+        } else {
+            isRotated = true
+        }
+        
         view.transform = view.transform.rotated(by: .pi)
+    }
+    
+    func rotateToDefaultOrientation() {
+        if isRotated {
+            view.transform = view.transform.rotated(by: .pi)
+        }
     }
 }

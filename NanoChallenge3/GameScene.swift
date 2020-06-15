@@ -574,6 +574,7 @@ class GameScene: SKScene, GameDelegate {
         for node in finishedGameSprites {
             node.removeFromParent()
         }
+        gameViewDelegate?.rotateToDefaultOrientation()
         
         guard let background = childNode(withName: "gameSceneBg") as? SKSpriteNode else { return }
         background.zPosition = -7
