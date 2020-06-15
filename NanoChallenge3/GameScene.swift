@@ -568,6 +568,18 @@ class GameScene: SKScene, GameDelegate {
     }
     
     func playAgain() {
+        let downTo = camera!.position.y - frame.midY
+        
+        camera?.position.y -= downTo
+        
+        for node in followCamera {
+            node.position.y -= downTo
+        }
+        
+        for node in blockOptions {
+            node.position.y -= downTo
+        }
+        
         isFinished = false
         physicsBody?.categoryBitMask = PhysicsCategory.scene
         setCountdown()
