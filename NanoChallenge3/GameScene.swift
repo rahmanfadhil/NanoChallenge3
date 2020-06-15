@@ -429,7 +429,6 @@ class GameScene: SKScene, GameDelegate {
         playerNameLabel.zPosition = 9
         playerNameLabel.fontSize = 64
         playerNameLabel.position = CGPoint(x: frame.midX, y: frame.midY - 120)
-        
         addChild(playerNameLabel)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -480,10 +479,27 @@ class GameScene: SKScene, GameDelegate {
             }
             
             let towerImage = SKSpriteNode(imageNamed: towerName)
-            towerImage.position = CGPoint(x: frame.midX, y: frame.midY)
+            towerImage.position = CGPoint(x: frame.midX, y: frame.midY - 200)
             towerImage.zPosition = 12
             addChild(towerImage)
         }
+        
+        // Reached text
+        let gameFinishedLabel = SKLabelNode(fontNamed: "GoldenDragonSolid")
+        gameFinishedLabel.text = "YOU BOTH HAVE REACHED"
+        gameFinishedLabel.position = CGPoint(x: frame.midX, y: frame.midY + 300)
+        gameFinishedLabel.zPosition = 12
+        gameFinishedLabel.fontSize = 64
+        addChild(gameFinishedLabel)
+        
+        // Score text
+        let totalScoreString = String(format: "%.1f", totalScore)
+        let scoreLabel = SKLabelNode(fontNamed: "Norwester-Regular")
+        scoreLabel.text = "\(totalScoreString) meters"
+        scoreLabel.zPosition = 12
+        scoreLabel.fontSize = 48
+        scoreLabel.position = CGPoint(x: frame.midX, y: frame.midY + 200)
+        addChild(scoreLabel)
     }
 }
 
