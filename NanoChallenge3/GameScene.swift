@@ -249,7 +249,7 @@ class GameScene: SKScene, GameDelegate {
                     // Copy selected block
                     guard let copiedNode = node.copy() as? SKSpriteNode else { return }
                     copiedNode.position = location
-                    copiedNode.zPosition = 1
+                    copiedNode.zPosition = 3
                     addChild(copiedNode)
                     
                     // Set currently dragged node
@@ -383,7 +383,7 @@ class GameScene: SKScene, GameDelegate {
             if newScore > score {
                 score = newScore
                 
-                if farthest > frame.midY {
+                if farthest > frame.maxY * 0.75 {
                     if let blockHeight = lastDroppedBlock?.size.height {
                         camera?.position.y += blockHeight
                         
@@ -494,7 +494,7 @@ class GameScene: SKScene, GameDelegate {
         overlay.zPosition = 11
         addChild(overlay)
         
-        let totalScore = Double(score) * 0.15
+        let totalScore = Double(score) * 0.25
         
         print(score)
         print(totalScore)
